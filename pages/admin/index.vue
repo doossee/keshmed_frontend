@@ -315,7 +315,7 @@
 <script setup lang="ts">
 import lodash from 'lodash'
 import { countries, conditions } from '@/constants'
-import type { IProduct, ICategory, IBrand, ICharacteristic, IProductForm } from '@/types'
+import type { IProduct, ICategory, IBrand, IProductForm } from '@/types'
 import { AkPlus, McPencilFill, ClCloseMd, MdDelete, ClSearchMagnifyingGlass } from '@kalimahapps/vue-icons'
 
 definePageMeta({
@@ -367,7 +367,7 @@ const product = ref<IProductForm | any>({
     characteristics: [],
     model: '',
     price: null,
-    sales_areas: [],
+    sales_areas: [232,222,112,212,],
     shipping_from: null,
     warranty: null,
     year: 2000,

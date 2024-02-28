@@ -55,7 +55,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 import { languages, navigation_links } from '~/constants'
-import { ChMenuHamburger, BsTelephone } from '@kalimahapps/vue-icons'
+import { BsTelephone } from '@kalimahapps/vue-icons'
 
 const { locale } = useI18n()
 
