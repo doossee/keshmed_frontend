@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #673ab7;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        font-size: 44px;
+      }
+
+      .cls-5, .cls-3 {
+        font-family: Outfit-Bold, Outfit;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #282828;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: .01em;
+      }
+
+      .cls-9 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-10 {
+        letter-spacing: 0em;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-13 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-3 {
+        font-size: 58.77px;
+      }
+
+      .cls-14 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-6 {
+        font-family: Outfit-Medium, Outfit;
+        font-size: 218px;
+        font-variation-settings: 'wght' 500;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <g id="Main_Variant" data-name="Main Variant">
+    <g>
+      <polygon class="cls-2" points="655.72 737.44 600.2 481.76 571.59 614.95 91.82 614.95 91.82 585.56 547.85 585.56 600.05 342.56 658.91 613.62 714.61 408.57 750.78 585.56 897.15 585.56 897.15 614.95 726.8 614.95 710.57 535.55 655.72 737.44"/>
+      <path class="cls-2" d="M921.21,600.26c0,2.48-2.01,4.49-4.49,4.49s-4.24-2.01-4.24-4.49,1.76-4.49,4.24-4.49,4.49,2.01,4.49,4.49Z"/>
+      <text class="cls-3" transform="translate(933.9 614.14) scale(.98 1)"><tspan x="0" y="0">uz</tspan></text>
+    </g>
+    <g>
+      <text class="cls-6" transform="translate(75.51 559.64) scale(.98 1)"><tspan class="cls-16" x="0" y="0">K</tspan><tspan x="136.03" y="0">esh</tspan></text>
+      <text class="cls-6" transform="translate(765.29 559.66) scale(.98 1)"><tspan x="0" y="0">ed</tspan></text>
+      <text class="cls-5" transform="translate(89.06 677.63) scale(.98 1)"><tspan x="0" y="0">MEDICA</tspan><tspan class="cls-15" x="173.27" y="0">L</tspan><tspan class="cls-11" x="197.6" y="0" xml:space="preserve">   EQUI</tspan><tspan class="cls-7" x="329.55" y="0">P</tspan><tspan x="356.88" y="0">MEN</tspan><tspan class="cls-12" x="454.16" y="0">T</tspan><tspan class="cls-8" x="481.57" y="0" xml:space="preserve">   </tspan><tspan class="cls-13" x="507.97" y="0">&amp;</tspan></text>
+      <text class="cls-5" transform="translate(691.26 677.61) scale(.98 1)"><tspan x="0" y="0">I</tspan><tspan class="cls-9" x="12.89" y="0">N</tspan><tspan class="cls-1" x="44.75" y="0">S</tspan><tspan x="69.26" y="0">T</tspan><tspan class="cls-4" x="97.37" y="0">R</tspan><tspan x="125.36" y="0">UMEN</tspan><tspan class="cls-14" x="253.53" y="0">T</tspan><tspan class="cls-10" x="280.01" y="0">S</tspan></text>
+    </g>
+  </g>
+</svg>
