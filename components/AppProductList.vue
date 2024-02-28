@@ -1,7 +1,7 @@
 <template>
-    <v-list-item theme="light" variant="flat" color="surface" link :to="`/product/${product!.slug}`" border lines="three" rounded class="mb-3 pa-2">
+    <v-list-item theme="light" variant="flat" color="surface" link :to="`/product/${product!.slug}`" border lines="three" rounded class="mb-3 pa-2 pt-0">
         <template #prepend>
-            <v-avatar size="150" rounded color="grey-lighten-3">
+            <v-avatar size="120" rounded color="grey-lighten-3">
                 <v-img :alt="product?.title_uz +' image'" :src="product?.images?.[0]?.image || '/img/nophoto.jpg'"></v-img>
             </v-avatar>
         </template>

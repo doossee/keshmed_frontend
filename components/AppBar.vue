@@ -11,7 +11,7 @@
         </nuxt-link>
 
         <div class="d-flex align-center gap-1">
-            <v-btn v-show="!mobile" href="tel:+998908893700" color="primary" height="28" :prepend-icon="BsTelephone" variant="text" class="text-none text-body-2 font-weight-light mr-1">
+            <v-btn v-show="!mobile" href="tel:+998908893700" color="primary" height="28" prepend-icon="mdi-phone" variant="text" class="text-none text-body-2 font-weight-light mr-1">
                 <span>+998 (90) 889 37 00</span>
             </v-btn>
             <v-menu location="bottom center" transition="fade-transition">
@@ -55,7 +55,6 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 import { languages, navigation_links } from '~/constants'
-import { BsTelephone } from '@kalimahapps/vue-icons'
 
 const { locale } = useI18n()
 

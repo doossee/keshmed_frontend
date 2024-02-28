@@ -2,11 +2,11 @@
     <v-container fluid class="py-0">
         <v-row justify="space-between" align="center">
             <v-col cols="9" sm="6" md="4" class="pb-0 pr-0">
-                <v-text-field bg-color="surface" @update:modelValue="debounceSearch" :placeholder="$t('admin.search')" :append-inner-icon="ClSearchMagnifyingGlass" hide-details flat density="compact" variant="solo" class="border rounded"></v-text-field>
+                <v-text-field bg-color="surface" @update:modelValue="debounceSearch" :placeholder="$t('admin.search')" append-inner-icon="mdi-magnify" hide-details flat density="compact" variant="solo" class="border rounded"></v-text-field>
             </v-col>
             <v-col cols="3" sm="4" md="2" class="pb-0 d-flex justify-end">
                 <v-btn @click="dialog=true" color="primary" size="40" width="100%">
-                    <v-icon :icon="AkPlus" />
+                    <v-icon icon="mdi-plus" />
                 </v-btn>
             </v-col>
             <v-col cols="12">
@@ -30,8 +30,8 @@
                                 <td :data-label="column.title" class="d-flex justify-space-between align-center">
                                     <span></span>
                                     <div>
-                                        <v-btn @click="editItem(item, index)" color="light-blue-accent-4" size="30" flat class="mr-1"><v-icon :icon="McPencilFill" /></v-btn>
-                                        <v-btn @click="deleteItemConfirm(item.id!, index)" color="red" size="30" flat><v-icon :icon="MdDelete" /></v-btn>
+                                        <v-btn @click="editItem(item, index)" color="light-blue-accent-4" size="30" flat class="mr-1"><v-icon icon="mdi-pencil" /></v-btn>
+                                        <v-btn @click="deleteItemConfirm(item.id!, index)" color="red" size="30" flat><v-icon icon="mdi-delete" /></v-btn>
                                     </div>
                                 </td>
                             </template>
@@ -74,7 +74,7 @@
             <v-card flat border="" color="background">
                 <v-card-title class="px-4 py-3 d-flex justify-space-between align-center">
                 <span class="font-weight-light">{{ $t(editedId?'admin.edit_brands':'admin.add_brands') }}</span>
-                <v-btn flat @click="dialog=false" size="32" color="primary"><v-icon size="small" :icon="ClCloseMd" /></v-btn>
+                <v-btn flat @click="dialog=false" size="32" color="primary"><v-icon size="small" icon="mdi-close" /></v-btn>
                 </v-card-title>
 
                 <v-card-text class="px-4 pt-2 pb-3">
@@ -119,7 +119,6 @@
 import lodash from 'lodash'
 import type { IBrand } from '@/types'
 import { countries } from '@/constants'
-import { AkPlus, McPencilFill, ClCloseMd, MdDelete, ClSearchMagnifyingGlass } from '@kalimahapps/vue-icons'
 
 definePageMeta({
   layout: 'admin-layout',

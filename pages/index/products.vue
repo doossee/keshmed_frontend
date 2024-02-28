@@ -7,7 +7,7 @@
                         <span>{{ $t('products.search_by_name') }}</span>
                     </v-card-text>
                     <v-card-text class="py-0 pb-1">
-                        <v-text-field :placeholder="$t('products.search_by_name')" :append-inner-icon="ClSearchMagnifyingGlass" flat
+                        <v-text-field :placeholder="$t('products.search_by_name')" append-inner-icon="mdi-magnify" flat
                             density="compact" class="border rounded" hide-details variant="solo" bg-color="background"
                             color="primary" v-model="filters.search" @update:model-value="setValue('search', $event)"></v-text-field>
                     </v-card-text>
@@ -45,7 +45,7 @@
                                 <span class="font-weight-light text-hover-link" :class="{ 'text-primary': (filters.category as any) === item.id }" @click.stop="setValue('category', item.id)">{{ title }}</span>
                             </template>
                             <template #append="{item, isActive}">
-                                <v-icon v-if="item.children!.length" :icon="isActive?AnOutlinedPlus:ClRemoveMinus"></v-icon>
+                                <v-icon v-if="item.children!.length">mdi-{{ isActive?'minus':'plus' }}</v-icon>
                             </template>
                         </v-list>
                     </v-card-text>
@@ -78,7 +78,6 @@
 <script setup lang="ts">
 import lodash from 'lodash'
 import type { IBrand, ICategory, IProduct } from '@/types'
-import { AnOutlinedPlus, ClSearchMagnifyingGlass, ClRemoveMinus } from '@kalimahapps/vue-icons'
 
 useHead({
     title: "Искать Медицинское Оборудование в Узбекистане",
@@ -162,5 +161,5 @@ const init = async () => {
     brands.value = b.results
 }
 
-init()
+await init()
 </script>

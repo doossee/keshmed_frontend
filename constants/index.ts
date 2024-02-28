@@ -1,26 +1,6 @@
-import {
-    BxTelegram,
-    BxInstagram,
-    AkWhatsappFill,
-    CaPhone,
-    CoBrandGmail,
-    FaTruckRampBox,
-    IoHammer,
-    BxSupport,
-    FaScrewdriverWrench,
-    CaStarReview,
-    CaCategory,
-    BsJournalText,
-    CaProduct,
-    BxHomeAlt2,
-    FaBasketShopping,
-} from '@kalimahapps/vue-icons'
-
 export const navigation_links = [
-    { lang: true, title: 'links.home', url: '/', icon: BxHomeAlt2 },
-    { lang: true, title: 'links.products', url: '/products', icon: FaBasketShopping },
-    // { title: 'links.brands', url: '/brands', icon: 'mdi' },
-    // { title: 'links.saved', url: '/saved', icon: 'mdi' },
+    { lang: true, title: 'links.home', url: '/', icon: 'mdi-home-outline' },
+    { lang: true, title: 'links.products', url: '/products', icon: 'mdi-magnify' },
 ]
 
 export const conditions = [
@@ -31,33 +11,18 @@ export const conditions = [
 ]
 
 export const social_links = [
-    { title: '@Kesh_Med', url: 'https://t.me/Kesh_Med', icon: BxTelegram },
-    { title: '@keshmed37', url: 'https://www.instagram.com/keshmed37', icon: BxInstagram },
-    { title: '+998 (90) 889 37 00', url: 'tel:+998908893700', icon: AkWhatsappFill },
-]
-
-export const contact_links = [
-    { url: 'tel:+998908893700', title: '+998 (90) 889 37 00', icon: CaPhone },
-    { url: 'mailto:keshmed37@gmail.com', title: 'keshmed37@gmail.com', icon: CoBrandGmail },
-    // { title: '+998 90 123 45 67', icon: '' },
-]
-
-export const faqs_links = [
-    { title: 'Помощь', url: '/', icon: 'mdi' },
-    { title: 'Админ', url: '/', icon: 'mdi' },
-    { title: 'Отзывы', url: '/', icon: 'mdi' },
-    { title: 'ЧЗВ', url: '/', icon: 'mdi' },
-]
-
-export const working_times = [
-    { title: '', }
+    { title: '@Kesh_Med', url: 'https://t.me/Kesh_Med', icon: 'mdi-send' },
+    { title: '@keshmed37', url: 'https://www.instagram.com/keshmed37', icon: 'mdi-instagram' },
+    { title: '+998 (90) 889 37 00', url: 'tel:+998908893700', icon: 'mdi-whatsapp' },
+    { url: 'tel:+998908893700', title: '+998 (90) 889 37 00', icon: 'mdi-phone' },
+    { url: 'mailto:keshmed37@gmail.com', title: 'keshmed37@gmail.com', icon: 'mdi-gmail' },
 ]
 
 export const index_card_items = [
-    { icon: FaTruckRampBox, title: 'home.card_1_title', description: 'home.card_1_desc' },
-    { icon: IoHammer , title: 'home.card_2_title', description: 'home.card_2_desc' },
-    { icon: FaScrewdriverWrench, title: 'home.card_3_title', description: 'home.card_3_desc' },
-    { icon: BxSupport, title: 'home.card_4_title', description: 'home.card_4_desc' },
+    { icon: 'mdi-truck-delivery', title: 'home.card_1_title', description: 'home.card_1_desc' },
+    { icon: 'mdi-hammer' , title: 'home.card_2_title', description: 'home.card_2_desc' },
+    { icon: 'mdi-wrench', title: 'home.card_3_title', description: 'home.card_3_desc' },
+    { icon: 'mdi-clock-outline', title: 'home.card_4_title', description: 'home.card_4_desc' },
 ]
 
 export const faqs = [
@@ -159,21 +124,18 @@ export const faqs = [
     },
 ]
 
-
 export const admin_links = [
-    { title: 'admin.products', icon: CaProduct, url: '/admin' },
-    { title: 'products.categories', icon: CaCategory, url: '/admin/categories' },
-    { title: 'products.brands', icon: CaStarReview, url: '/admin/brands' },
-    { title: 'admin.orders', icon: BsJournalText, url: '/admin/orders' },
+    { title: 'admin.products', icon: 'mdi-package-variant-closed', url: '/admin' },
+    { title: 'products.categories', icon: 'mdi-sitemap', url: '/admin/categories' },
+    { title: 'products.brands', icon: 'mdi-decagram', url: '/admin/brands' },
+    { title: 'admin.orders', icon: 'mdi-shopping', url: '/admin/orders' },
 ]
-
 
 export const languages = [
-    { img: '/flag/us.svg', lang: 'ru', title: 'Русский' },
-    { img: '/flag/ru.svg', lang: 'uz', title: "O'zbek" },
-    { img: '/flag/uz.svg', lang: 'en', title: "English" },
+    { img: '/flag/ru.svg', lang: 'ru', title: 'Русский' },
+    { img: '/flag/uz.svg', lang: 'uz', title: "O'zbek" },
+    { img: '/flag/en.svg', lang: 'en', title: "English" },
 ]
-
 
 export const countries = [
     {
@@ -1634,102 +1596,4 @@ export const countries = [
         "name": "Zimbabwe",
         "code": "ZW"
     }
-]
-
-
-export const categoires = [
-    {
-        id: 1,
-        name_en: 'Electronics',
-        name_ru: 'Электроника',
-        name_uz: 'Elektronika',
-        parent: null,
-        children: [
-            {
-                id: 2,
-                name_en: 'Smartphones',
-                name_ru: 'Смартфоны',
-                name_uz: 'Smartfonlar',
-                parent: 1,
-                children: [
-                    {
-                        id: 5,
-                        name_en: 'Apple',
-                        name_ru: 'Эппл',
-                        name_uz: 'Eppl',
-                        parent: 2,
-                        children: []
-                    },
-                    {
-                        id: 6,
-                        name_en: 'Samsung',
-                        name_ru: 'Самсунг',
-                        name_uz: 'Samsung',
-                        parent: 2,
-                        children: []
-                    },
-                    {
-                        id: 9,
-                        name_en: 'Google',
-                        name_ru: 'Гугл',
-                        name_uz: 'Google',
-                        parent: 2,
-                        children: [
-                            
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name_en: 'Laptops',
-                name_ru: 'Ноутбуки',
-                name_uz: 'Noutbuklar',
-                parent: 1,
-                children: [
-                    {
-                        id: 7,
-                        name_en: 'Dell',
-                        name_ru: 'Делл',
-                        name_uz: 'Dell',
-                        parent: 3,
-                        children: []
-                    },
-                    {
-                        id: 8,
-                        name_en: 'HP',
-                        name_ru: 'ХП',
-                        name_uz: 'HP',
-                        parent: 3,
-                        children: []
-                    },
-                    {
-                        id: 10,
-                        name_en: 'Lenovo',
-                        name_ru: 'Леново',
-                        name_uz: 'Lenovo',
-                        parent: 3,
-                        children: []
-                    }
-                ]
-            }
-        ]
-    },    
-    { id: 12, name_en: 'iPhone 13', name_ru: 'Айфон 13', name_uz: 'iPhone 13', parent: 5, children: [
-        { id: 18, name_en: 'Envy x360', name_ru: 'Энви x360', name_uz: 'Envy x360', parent: 8, children: [
-            { id: 22, name_en: 'ThinkPad X1 Carbon', name_ru: 'ThinkPad X1 Carbon', name_uz: 'ThinkPad X1 Carbon', parent: 10, children: [] },
-            { id: 23, name_en: 'IdeaPad 5', name_ru: 'IdeaPad 5', name_uz: 'IdeaPad 5', parent: 10, children: [] }
-        ] },
-        { id: 19, name_en: 'Pavilion', name_ru: 'Павильон', name_uz: 'Pavilion', parent: 8, children: [] }
-    ] },
-    { id: 13, name_en: 'iPhone SE', name_ru: 'Айфон SE', name_uz: 'iPhone SE', parent: 5, children: [
-        { id: 20, name_en: 'Pixel 6', name_ru: 'Пиксель 6', name_uz: 'Pixel 6', parent: 9, children: [
-        ] },
-        { id: 21, name_en: 'Pixel 5a', name_ru: 'Пиксель 5а', name_uz: 'Pixel 5a', parent: 9, children: [] }
-    ] },    
-    { id: 16, name_en: 'XPS 13', name_ru: 'XPS 13', name_uz: 'XPS 13', parent: 7, children: [
-        { id: 14, name_en: 'Galaxy S21', name_ru: 'Гэлэкси S21', name_uz: 'Galaxy S21', parent: 6, children: [] },
-        { id: 15, name_en: 'Galaxy Note 20', name_ru: 'Гэлэкси Ноут 20', name_uz: 'Galaxy Note 20', parent: 6, children: [] }
-    ] },
-    { id: 17, name_en: 'Inspiron 15', name_ru: 'Инспайрон 15', name_uz: 'Inspiron 15', parent: 7, children: [] },
 ]

@@ -8,7 +8,7 @@
       </div>
       <v-row class="mb-3">
         <v-col cols="6" sm="4" md="3">
-          <app-footer-link :title="$t('footer.social_links')" :links="[...social_links,...contact_links]" />
+          <app-footer-link :title="$t('footer.social_links')" :links="social_links" />
         </v-col>
 
         <v-col cols="6" sm="4" md="3">
@@ -31,19 +31,5 @@
 </template>
 
 <script setup lang="ts">
-import { contact_links, social_links, navigation_links } from '~/constants'
-// const social_links = [
-//   { icon: 'mdi-gmail', title: 'keshmed37@gmail.com', url: 'mailto:keshmed37@gmail.com' },
-//   { icon: 'mdi-instagram', title: '@keshmed37', url: 'https://www.instagram.com/keshmed37' },
-//   { icon: 'mdi-telegram', title: '@Kesh_Med', url: 'https://t.me/Kesh_Med' },
-//   { icon: 'mdi-phone', title: '+998 (90) 889 37 00', url: 'tel:+998908893700' },
-//   { icon: 'mdi-whatsapp', title: '+998 (90) 889 37 00', url: 'tel:+998908893700' },
-// ]
-
-// const site_links = [
-//   { icon: 'mdi-home-outline', title: 'Home Page', url: '/' },
-//   { icon: 'mdi-magnify', title: 'Products', url: '/products' },
-//   { icon: 'mdi-gift-outline', title: 'Brand', url: '/brands' },
-//   { icon: 'mdi-heart-outline', title: 'Saved', url: '/saved' },
-// ]
+import { social_links, navigation_links } from '~/constants'
 </script>

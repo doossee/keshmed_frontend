@@ -13,7 +13,7 @@
 
         <template v-slot:append>
             <div class="pa-2">
-                <v-btn href="tel:+998908893700" block variant="text" flat :prepend-icon="BsTelephone" class="mb-2 text-caption" color="primary">+998 (90) 889 37 00</v-btn>
+                <v-btn href="tel:+998908893700" block variant="text" flat prepend-icon="mdi-phone" class="mb-2 text-caption" color="primary">+998 (90) 889 37 00</v-btn>
                 <v-menu location="bottom center" transition="fade-transition">
                     <template #activator="{props}">
                         <v-btn block v-bind="props" variant="outlined" color="primary" class="text-none text-body-2 font-weight-light">
@@ -43,7 +43,6 @@
 
 <script lang="ts" setup>
 import { defineProps, toRefs } from 'vue'
-import { BsTelephone } from '@kalimahapps/vue-icons'
 import { navigation_links, languages } from '~/constants'
 
 const { locale } = useI18n()

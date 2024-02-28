@@ -4,7 +4,7 @@
             <v-col cols="12" style="height: 70vh; position: relative;"
                 class="d-flex rounded flex-column align-center justify-center mt-1">
                 <div class="w-100 h-100 px-2" style="position: absolute;">
-                    <v-carousel cycle height="100%" hide-delimiter-background :show-arrows="false" :delimiter-icon="AkCircleFill">
+                    <v-carousel cycle height="100%" hide-delimiter-background :show-arrows="false">
                         <v-carousel-item v-for="i in 4" :key="i">
                             <v-avatar class="w-100 h-100" rounded>
                                 <v-img alt="medical" gradient="to top left, rgba(104, 59, 181, 1), rgba(104, 59, 181, .4)"
@@ -25,7 +25,7 @@
                                 <v-text-field v-bind="props" class="mt-4" color="primary" rounded="lg" hide-details
                                     type="search" @update:model-value="searchProducts" bg-color="white"
                                     density="comfortable" autofocus variant="outlined" base-color="primary"
-                                    aria-label="search products" role="text" :prepend-inner-icon="ClSearchMagnifyingGlass"
+                                    aria-label="search products" role="text" prepend-inner-icon="mdi-magnify"
                                     :placeholder="$t('home.search')">
                                 </v-text-field>
                             </template>
@@ -86,7 +86,7 @@
             <v-col cols="12">
                 <div class="w-100 py-4 d-flex justify-space-between align-center">
                     <span class="text-primary">{{ $t('home.recomended') }}</span>
-                    <v-btn to="/products" :append-icon="AkArrowRight" color="primary" variant="text"
+                    <v-btn to="/products" append-icon="mdi-arrow-right" color="primary" variant="text"
                         class="text-none font-weight-light">
                         <span>{{ $t('home.see_all') }}</span>
                     </v-btn>
@@ -124,7 +124,6 @@ import { ref } from 'vue'
 import lodash from 'lodash'
 import type { IProduct } from '~/types'
 import { index_card_items, faqs, countries } from '~/constants'
-import { ClSearchMagnifyingGlass, AkArrowRight, AkCircleFill } from '@kalimahapps/vue-icons'
 
 useHead({
     title: "Медицинское Оборудование в Узбекистане",
@@ -149,10 +148,10 @@ const init = async () => {
 }
 
 const searchProducts = debounce(async (e: string | null) => {
-    // if (!e?.trim()) return searchedProducts.value = []
-    // const { data } = await getAllProducts(`?search=${e}&limit=50`)
-    // searchedProducts.value = data.results
+    if (!e?.trim()) return searchedProducts.value = []
+    const data: any = await getAllProducts(`?search=${e}&limit=50`)
+    searchedProducts.value = data.results
 }, 500)
 
-init()
+await init()
 </script>

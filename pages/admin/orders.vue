@@ -2,7 +2,7 @@
     <v-container fluid class="py-0">
       <v-row justify="space-between" align="center">
           <v-col cols="12" sm="6" md="4" class="pb-0">
-              <v-text-field bg-color="surface" @update:modelValue="debounceSearch" :placeholder="$t('admin.search')" :append-inner-icon="ClSearchMagnifyingGlass" hide-details flat density="compact" variant="solo" class="border rounded"></v-text-field>
+              <v-text-field bg-color="surface" @update:modelValue="debounceSearch" :placeholder="$t('admin.search')" append-inner-icon="mdi-magnify" hide-details flat density="compact" variant="solo" class="border rounded"></v-text-field>
           </v-col>
           <v-col cols="12">
               <v-card flat border="">
@@ -37,7 +37,7 @@
                               <template #item.status="{item, column, index}">
                                 <td :data-label="column.title">
                                   <v-chip variant="flat" :disabled="item.checked" :color="item.checked?'green':'red'" @click="check(item.id!, index)">
-                                    <v-icon :icon="!item.checked?AkCheck:AkDoubleCheck" />
+                                    <v-icon>mdi-check{{ item.checked?"-all":"" }}</v-icon>
                                   </v-chip>
                                 </td>
                               </template>
@@ -60,7 +60,6 @@
 <script setup lang="ts">
 import lodash from 'lodash'
 import type { IOrder } from '@/types'
-import { ClSearchMagnifyingGlass, AkCheck, AkDoubleCheck } from '@kalimahapps/vue-icons'
 
 definePageMeta({
   layout: 'admin-layout',

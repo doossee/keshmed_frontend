@@ -12,13 +12,13 @@
       <v-list :lines="false" nav variant="flat">
         <v-list-item link color="primary" base-color="transparent" @click="handleLogout">
           <template v-slot:prepend>
-            <v-icon :icon="IoOutlineLogOut"></v-icon>
+            <v-icon icon="mdi-logout-variant"></v-icon>
           </template>
           <v-list-item-title>{{ $t('admin.logout') }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </template>
-    <v-btn position="absolute" elevation="1" v-if="!mobile" :icon="!rail ? AkChevronLeft : AkChevronRight" size="x-small" @click="rail = !rail" style="right: -15px"></v-btn>
+    <v-btn position="absolute" elevation="1" v-if="!mobile" :icon="`mdi-chevron-${!rail ? 'left' : 'right'}`" size="x-small" @click="rail = !rail" style="right: -15px"></v-btn>
   </v-navigation-drawer>
 </template>
 
@@ -26,7 +26,6 @@
 import { ref, watch } from "vue"
 import { useDisplay } from "vuetify"
 import { admin_links } from '../constants'
-import { IoOutlineLogOut, AkChevronLeft, AkChevronRight } from '@kalimahapps/vue-icons'
 
 const { mobile } = useDisplay()
 const { logout } = useAuth()

@@ -4,7 +4,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   ssr: true,
   
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -12,23 +12,51 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    '@nuxt/image', '@pinia/nuxt', '@nuxtjs/i18n', 'nuxt-delay-hydration', '@nuxtjs/robots', 'nuxt-simple-sitemap',
+    '@nuxt/image', '@nuxtjs/i18n', 'nuxt-delay-hydration', '@nuxtjs/robots', '@nuxtjs/sitemap',
     ],
-  // '@nuxt/ui',
+    
+  i18n: {
+    locales: [
+      {
+        code: 'uz',
+        file: 'uz.json',
+      },
+      {
+        code: 'ru',
+        file: 'ru.json',
+      },
+      {
+        code: 'en',
+        file: 'en.json',
+      },
+    ],
+    defaultLocale: 'ru',
+    skipSettingLocaleOnNavigate: true,
+    langDir: './locales',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
+  },
+  sitemap: {
+    i18n: false,
+    url: 'https://keshmed.uz',
+    exclude: ['/admin', '/admin/*', '/login'],
+    sources: [
+      '/api/__sitemap__/urls',
+    ]
+  },
   robots: {
     UserAgent: '*',
     Allow: '/*',
     Disallow: '/admin/*',
-  },  
-  pinia: {
-    storesDirs: ['./store/**']
   },
   delayHydration: {
     // enables nuxt-delay-hydration in dev mode for testing
     debug: process.env.NODE_ENV === 'development',
     mode: 'mount'
   },
-  css: ['vuetify/lib/styles/main.sass'],
   components: true,
   sourcemap: {
     client: true,
@@ -80,13 +108,10 @@ export default defineNuxtConfig({
       ],
     },
   },
-  i18n: {
-    vueI18n: './i18n.config.ts'
-  },
   runtimeConfig: {
     public: {
       backUrl: process.env.NUXT_SERVER_URL
-    }
+    },
   },
   build: {
     transpile: ['vuetify'],
@@ -98,9 +123,4 @@ export default defineNuxtConfig({
       },
     },
   }
-  // modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'shadcn-nuxt'],
-  // shadcn: {
-  //   prefix: '',
-  //   componentDir: './components/ui'
-  // }
 })

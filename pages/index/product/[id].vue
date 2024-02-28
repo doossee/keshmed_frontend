@@ -18,13 +18,15 @@
                         </v-avatar>
                         <v-divider></v-divider>
                         <v-card-actions class="pa-0 d-flex justify-center" v-if="product?.images.length!==0">
-                            <v-slide-group v-model="currentImage" class="pa-2" mandatory selected-class="bg-primary" show-arrows>
-                                <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="image, i in product?.images" :key="i">
-                                    <v-avatar size="50" rounded @click="toggle" :color="!isSelected ? 'grey-lighten-3' : 'primary'" class="mx-1 pa-1">
-                                        <v-img alt="thumb" :src="image?.thumbnail || '/img/nophoto.jpg'" cover></v-img>
-                                    </v-avatar>
-                                </v-slide-group-item>
-                            </v-slide-group>
+                            <ClientOnly>
+                                <v-slide-group v-model="currentImage" class="pa-2" mandatory selected-class="bg-primary" show-arrows>
+                                    <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="image, i in product?.images" :key="i">
+                                        <v-avatar size="50" rounded @click="toggle" :color="!isSelected ? 'grey-lighten-3' : 'primary'" class="mx-1 pa-1">
+                                            <v-img alt="thumb" :src="image?.thumbnail || '/img/nophoto.jpg'" cover></v-img>
+                                        </v-avatar>
+                                    </v-slide-group-item>
+                                </v-slide-group>
+                            </ClientOnly>
                         </v-card-actions>
                     </v-card>
                 </v-skeleton-loader>
@@ -37,8 +39,8 @@
                         <v-card-text class="pb-0 pt-2 px-0 d-flex justify-space-between align-center">
                             <div>
                                 <span class="text-h5 text-primary font-weight-medium">{{ product?.price }} $</span>
-                                <v-rating readonly color="amber" density="compact" half-increments :length="5" size="small"
-                                    :model-value="0" active-color="amber" class="ml-2" />
+                                <!-- <v-rating readonly color="amber" density="compact" half-increments :length="5" size="small"
+                                    :model-value="0" active-color="amber" class="ml-2" /> -->
                             </div>
                             <!-- <v-btn @click="save(product!)" size="35" color="primary" variant="flat" class="text-none">
                                 <v-icon>mdi-heart{{ saved_item(product?._id!) ? '' : '-outline' }}</v-icon>
@@ -107,17 +109,17 @@
                             <span>{{ $t('products.contact_us') }}</span>
                             <v-row class="pa-2 mt-0">
                                 <v-col cols="6" md="4" class="pa-1">
-                                    <v-btn href="https://t.me/Keshmed37" height="35" :prepend-icon="CoBrandTelegramPlane" block color="#0088cc" variant="flat" class="text-none">
+                                    <v-btn href="https://t.me/Keshmed37" height="35" prepend-icon="mdi-send" block color="#0088cc" variant="flat" class="text-none">
                                         {{ $t('products.telegram') }}
                                     </v-btn>
                                 </v-col>
                                 <v-col cols="6" md="4" class="pa-1">
-                                    <v-btn href="tel:+998908893700" height="35" :prepend-icon="CaPhoneFilled" block color="green" variant="flat" class="text-none">
+                                    <v-btn href="tel:+998908893700" height="35" prepend-icon="mdi-phone" block color="green" variant="flat" class="text-none">
                                         {{ $t('products.call') }}
                                     </v-btn>
                                 </v-col>
                                 <v-col cols="12" md="4" class="pa-1">
-                                    <v-btn @click="dialog=true" height="35" :prepend-icon="MdShoppingCart" block color="primary" variant="flat" class="text-none">
+                                    <v-btn @click="dialog=true" height="35" prepend-icon="mdi-cart" block color="primary" variant="flat" class="text-none">
                                         {{ $t('products.order') }}
                                     </v-btn>
                                 </v-col>
@@ -197,7 +199,7 @@
                                 <v-select :item-props="itemProps" :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface" v-model="review.country" :items="countries" :placeholder="$t('products.country')" item-title="name" hide-details item-value="id" variant="solo" color="primary" />
                             </v-col>
                             <v-col cols="12" class="d-flex justify-end pt-1">
-                                <v-btn  :loading="save_loading" flat @click="handleReview" color="primary">{{ $t('products.send') }}</v-btn>
+                                <v-btn :loading="save_loading" flat @click="handleReview" color="primary">{{ $t('products.send') }}</v-btn>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -212,34 +214,12 @@ import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { countries } from '~/constants'
 import type { IProduct } from '~/types'
-import { CoBrandTelegramPlane, CaPhoneFilled, MdShoppingCart } from '@kalimahapps/vue-icons'
-// import { Splide, SplideSlide, Options } from '@splidejs/vue-splide'
 
 const nameRule = [(v: any) => !!v || 'asdf']
 const { lang } = useLang()
 const { createOrder } = useOrders()
 const { getProductById, getAllProducts } = useProducts()
-// const { params } = useRoute()
 const save_loading = ref(false)
-// const slideOptions: Options = {
-//     rewind: true, 
-//     arrows: false,
-//     pagination: false,
-//     gap: '10px',
-//     perMove: 1,
-//     perPage: 4,
-//     breakpoints: {
-// 		550: {
-// 			perPage: 1,
-// 		},
-// 		700: {
-// 			perPage: 2,
-// 		},
-//         960: {
-//             perPage: 3,
-//         }
-//   }
-// }
 
 const route = useRoute()
 const dialog = ref(false)
@@ -288,17 +268,6 @@ const getSimilar = async (c: number, b: number) => {
     // console.log(data.results);
 }
 
-// const send = async () => {
-//     await createOrder(review)
-//     dialog.value = false
-//     alert({'uz':"Muvaffaqiyatli yuborildi!", 'ru': "Успешно отправлено!", en: 'Succesfully sended!'}[lang.value])
-// }
-
-// const saved_item = (id: string) => !!getters.saved.find((c: any) => c._id === id)
-// const save = (item: IProduct) => {
-//     if (!saved_item(item._id!)) commit('ADD_TO_SAVE', item)
-//     else commit('REMOVE_TO_SAVE', item)
-// }
 const itemProps = (item: any) => {
     return {
         title: item.name,

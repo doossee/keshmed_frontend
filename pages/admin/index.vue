@@ -3,12 +3,12 @@
         <v-row justify="space-between" align="center">
             <v-col cols="9" sm="6" md="4" class="pb-0 pr-0">
                 <v-text-field bg-color="surface" @update:modelValue="debounceSearch" :placeholder="$t('admin.search')"
-                    :append-inner-icon="ClSearchMagnifyingGlass" hide-details density="compact" variant="solo" flat
+                    append-inner-icon="mdi-magnify" hide-details density="compact" variant="solo" flat
                     class="border rounded"></v-text-field>
             </v-col>
             <v-col cols="3" sm="4" md="2" class="pb-0 d-flex justify-end">
                 <v-btn @click="dialog = true" elevation="2" color="primary" size="40" width="100%">
-                    <v-icon :icon="AkPlus" />
+                    <v-icon icon="mdi-plus" />
                 </v-btn>
             </v-col>
             <v-col cols="12">
@@ -25,9 +25,9 @@
                                     <td :data-label="column.title">
                                         <div class="d-flex w-100 justify-space-end align-center">
                                             <v-btn @click="editItem(index, item)" color="light-blue-accent-4" size="30" flat
-                                                class="mr-1"><v-icon :icon="McPencilFill" /></v-btn>
+                                                class="mr-1"><v-icon icon="mdi-pencil" /></v-btn>
                                             <v-btn @click="deleteItem(index, item.id!)" color="red" size="30"
-                                                flat><v-icon :icon="MdDelete" /></v-btn>
+                                                flat><v-icon icon="mdi-delete" /></v-btn>
                                         </div>
                                     </td>
                                 </template>
@@ -104,7 +104,7 @@
                 <v-card-title class="px-4 py-3 d-flex justify-space-between align-center">
                     <span>{{ $t(editedId ? 'admin.edit_product' : 'admin.add_product') }}</span>
                     <v-btn flat @click="dialog = false" size="32" color="primary"><v-icon
-                            size="small" :icon="ClCloseMd" /></v-btn>
+                            size="small" icon="mdi-close" /></v-btn>
                 </v-card-title>
                 <v-card-text class="px-4 py-4">
                     <v-form class="w-100 form-card" ref="form">
@@ -199,7 +199,7 @@
                                             <td class="px-2 d-flex align-center justify-space-between">{{
                                                 { 'uz': 'Qiymat', 'ru': 'Значение', 'en': 'Value' }[$i18n.locale] }} <v-btn
                                                     size="20" color="red" flat
-                                                    @click="removeValue(i, 'characteristics')"><v-icon :icon="ClCloseMd" /></v-btn>
+                                                    @click="removeValue(i, 'characteristics')"><v-icon icon="mdi-delete" /></v-btn>
                                             </td>
                                         </tr>
                                     </thead>
@@ -270,7 +270,7 @@
                                                     <div class="d-flex align-center justify-space-between w-100">
                                                         <span class="text-caption">{{ image.name.slice(0, 8) }}...</span>
                                                         <v-btn size="20" color="red" flat @click="images.splice(n, 1)">
-                                                            <v-icon size="small" :icon="MdDelete" />
+                                                            <v-icon size="small" icon="mdi-delete" />
                                                         </v-btn>
                                                     </div>
                                                 </div>
@@ -289,7 +289,7 @@
                                             <div class="d-flex align-center justify-space-between w-100">
                                                 <span>{{ n }}</span>
                                                 <v-btn size="20" color="red" flat @click="removeValue(n, 'images')">
-                                                    <v-icon size="small" :icon="MdDelete" />
+                                                    <v-icon size="small" icon="mdi-delete" />
                                                 </v-btn>
                                             </div>
                                         </div>
@@ -316,7 +316,6 @@
 import lodash from 'lodash'
 import { countries, conditions } from '@/constants'
 import type { IProduct, ICategory, IBrand, IProductForm } from '@/types'
-import { AkPlus, McPencilFill, ClCloseMd, MdDelete, ClSearchMagnifyingGlass } from '@kalimahapps/vue-icons'
 
 definePageMeta({
     layout: 'admin-layout',

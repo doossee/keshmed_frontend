@@ -6,7 +6,7 @@
           </v-col> -->
           <v-col cols="12" class="pb-0 d-flex justify-end" style="margin-top:1px;">
               <v-btn @click="dialog=true" color="primary" size="40" width="100%">
-                  <v-icon :icon="AkPlus" />
+                  <v-icon icon="mdi-plus" />
               </v-btn>
           </v-col>
           <v-col cols="12">
@@ -24,7 +24,7 @@
         <v-card flat border="" color="background">
           <v-card-title class="px-4 py-3 d-flex justify-space-between align-center">
             <span class="font-weight-light">{{ $t(editedId?'admin.edit_categories':'admin.add_categories') }}</span>
-            <v-btn flat @click="dialog=false" size="32" color="primary"><v-icon size="small" :icon="ClCloseMd" /></v-btn>
+            <v-btn flat @click="dialog=false" size="32" color="primary"><v-icon size="small" icon="mdi-close" /></v-btn>
           </v-card-title>
   
           <v-card-text class="px-4 pt-2 pb-3">
@@ -70,7 +70,6 @@
 
 <script setup lang="ts">
 import type { ICategory } from '@/types'
-import { AkPlus, McPencilFill, ClCloseMd, MdDelete, ClSearchMagnifyingGlass } from '@kalimahapps/vue-icons'
 
 definePageMeta({
   layout: 'admin-layout',
