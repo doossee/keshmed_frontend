@@ -3,7 +3,7 @@ export default defineSitemapEventHandler(async () => {
   const config = useRuntimeConfig()
   // console.log(config.public.backUrl);
   
-  const data = await fetch(`${config.public.backUrl}api/products?expand=images`)
+  const data = await fetch(`http://37.140.216.137:3000/api/products?expand=images`)
   const products: { results: { slug: string, created_at: string, images: [] }[] } = await data.json()
   return products.results.map(p => asSitemapUrl({
       loc: `/product/${p.slug}`,
