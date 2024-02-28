@@ -1,7 +1,7 @@
 <template>
     <v-container theme="light">
         <v-row justify="center">
-            <v-col cols="12" style="height: 70vh; position: relative;"
+            <v-col cols="12" style="height: 80vh; position: relative;"
                 class="d-flex rounded flex-column align-center justify-center mt-1">
                 <div class="w-100 h-100 px-2" style="position: absolute;">
                     <v-carousel cycle height="100%" hide-delimiter-background :show-arrows="false">

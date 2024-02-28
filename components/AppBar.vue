@@ -1,11 +1,14 @@
 <template>
 <v-app-bar theme="light" flat color="background">
     <v-container class="d-flex align-center justify-space-between">
-        <div class="d-flex gap-1" v-if="!mobile">
+        <div class="d-flex ga-2" v-if="!mobile">
             <v-btn height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="text" v-for="link,i in navigation_links" :key="i" :to="link.url" exact>
                 {{ $t(link.title) }}
             </v-btn>
         </div>
+        <v-btn v-else class="mr-5" aria-labelledby="toggle-nav-drawer" aria-label="toggle-drawer" @click="$emit('open-nav')" size="35" variant="flat" color="primary">
+            <v-icon>mdi-menu</v-icon>
+        </v-btn>
         <nuxt-link to="/" class="text-h6 text-primary text-decoration-none py-1">
             <img src="/keshmed-logo.png" width="100" height="45" alt="site-logo">
         </nuxt-link>
@@ -18,7 +21,7 @@
                 <template #activator="{props}">
                     <v-btn color="primary" height="28" v-bind="props" variant="outlined" class="text-none text-body-2 font-weight-light">
                         <template #prepend>
-                            <v-avatar rounded size="20">
+                            <v-avatar rounded size="20" v-show="!mobile">
                                 <v-img :src="currentLang?.img" alt="sile-languages-choice"></v-img>
                             </v-avatar>
                         </template>
@@ -38,15 +41,6 @@
             </v-menu>
         </div>
     </v-container>
-    <template #extension v-if="mobile">
-        <v-container>
-            <div class="d-flex gap-1">
-                <v-btn height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="text" v-for="link,i in navigation_links" :key="i" :to="link.url" exact>
-                    {{ $t(link.title) }}
-                </v-btn>
-            </div>
-        </v-container>
-    </template>
 </v-app-bar>
 </template>
 

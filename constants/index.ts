@@ -134,7 +134,7 @@ export const admin_links = [
 export const languages = [
     { img: '/flag/ru.svg', lang: 'ru', title: 'Русский' },
     { img: '/flag/uz.svg', lang: 'uz', title: "O'zbek" },
-    { img: '/flag/en.svg', lang: 'en', title: "English" },
+    { img: '/flag/us.svg', lang: 'en', title: "English" },
 ]
 
 export const countries = [
