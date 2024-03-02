@@ -1,0 +1,2 @@
+const p=()=>({getAllProducts:t=>$fetch(`/api/products/${t}`),getProductById:(t,e)=>$fetch(`/api/products/${t}/?${e}`),createProduct:t=>$fetch("/api/products/",{method:"post",body:t}),updateProduct:(t,e)=>$fetch(`/api/products/${t}/`,{method:"put",body:e}),deleteProduct:t=>$fetch(`/api/products/${t}/`,{method:"delete"}),sendImage:async(t,e)=>$fetch(`/api/products/${t}/create_image/`,{method:"post",body:e})});export{p as u};
+//# sourceMappingURL=useProducts.p1LffWDY.js.map
