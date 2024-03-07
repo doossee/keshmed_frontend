@@ -11,18 +11,18 @@
                 </v-card>
             </v-col>
             <v-col cols="12" sm="6">
-                <v-skeleton-loader :loading="loading" type="image,image,button,button,button,button">
-                    <v-card flat width="100%" border>
-                        <v-avatar rounded size="100%">
-                            <v-img :alt="product?.title_ru" height="400" width="100%" :src="product?.images?.[currentImage]?.image || '/img/nophoto.jpg'"></v-img>
-                        </v-avatar>
+                <v-skeleton-loader height="100%" class="h-100" :loading="loading" type="image,image,button,button,button,button">
+                    <v-card flat width="100%" height="100%" border>
+                        <!-- <v-avatar rounded size="400"> -->
+                            <v-img :alt="product?.title_ru" cover height="500" width="100%" :src="product?.images?.[currentImage]?.image || '/images/nophoto.jpg'"></v-img>
+                        <!-- </v-avatar> -->
                         <v-divider></v-divider>
                         <v-card-actions class="pa-0 d-flex justify-center" v-if="product?.images.length!==0">
                             <ClientOnly>
                                 <v-slide-group v-model="currentImage" class="pa-2" mandatory selected-class="bg-primary" show-arrows>
                                     <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="image, i in product?.images" :key="i">
                                         <v-avatar size="50" rounded @click="toggle" :color="!isSelected ? 'grey-lighten-3' : 'primary'" class="mx-1 pa-1">
-                                            <v-img alt="thumb" :src="image?.thumbnail || '/img/nophoto.jpg'" cover></v-img>
+                                            <v-img alt="thumb" :src="image?.thumbnail || '/images/nophoto.jpg'" cover></v-img>
                                         </v-avatar>
                                     </v-slide-group-item>
                                 </v-slide-group>
@@ -128,7 +128,7 @@
                     </v-card>
                 </v-skeleton-loader>
             </v-col>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="6" v-show="product?.characteristics?.length!>0">
                 <v-skeleton-loader :loading="loading" type="sentences,avatar, paragraph" min-height="100%">
                     <v-card flat border width="100%">
                         <v-card-text class="text-primary pb-0 text-body-1">{{ $t('products.characteristics') }}</v-card-text>
@@ -149,9 +149,11 @@
                     <v-card flat border width="100%">
                         <v-card-text class="text-primary pb-0 text-body-1">{{ $t('products.description') }}</v-card-text>
                         <v-card-text class="pt-2">
-                            <span style="white-space: pre-line;">
-                                {{ product?.[`description_${$i18n.locale as 'uz'}`] }}
-                            </span>
+                            <ClientOnly>
+                                <span style="white-space: pre-line;">
+                                    {{ product?.[`description_${$i18n.locale as 'uz'}`] }}
+                                </span>
+                            </ClientOnly>
                         </v-card-text>
                     </v-card>
                 </v-skeleton-loader>
@@ -306,7 +308,7 @@ useSeoMeta({
     title: product.value?.title_ru,
     ogTitle: () => product.value?.title_ru,
     ogDescription: product.value?.description_ru,
-    ogImage: product.value?.images[0].image,
+    ogImage: product.value?.images?.[0]?.image,
     description: product.value?.description_ru,
 })
 useHead({

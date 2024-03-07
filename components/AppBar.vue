@@ -1,14 +1,22 @@
 <template>
 <v-app-bar theme="light" flat color="background">
     <v-container class="d-flex align-center justify-space-between">
-        <div class="d-flex ga-2" v-if="!mobile">
-            <v-btn height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="text" v-for="link,i in navigation_links" :key="i" :to="link.url" exact>
-                {{ $t(link.title) }}
+        <div class="d-flex ga-2" v-if="mobile">
+            <v-btn v-if="route.path!=='/'" height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="outlined" to="/" exact>
+                {{ $t('links.home') }}
+            </v-btn>
+            <v-btn v-else height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="outlined" to="/products" exact>
+                {{ $t('links.products') }}
             </v-btn>
         </div>
-        <v-btn v-else class="mr-5" aria-labelledby="toggle-nav-drawer" aria-label="toggle-drawer" @click="$emit('open-nav')" size="35" variant="flat" color="primary">
-            <v-icon>mdi-menu</v-icon>
-        </v-btn>
+        <div class="d-flex ga-2" v-else>
+            <v-btn height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="text" to="/" exact>
+                {{ $t('links.home') }}
+            </v-btn>
+            <v-btn height="28" color="primary" class="text-none text-body-2 font-weight-light" variant="text" to="/products" exact>
+                {{ $t('links.products') }}
+            </v-btn>
+        </div>
         <nuxt-link to="/" class="text-h6 text-primary text-decoration-none py-1">
             <img src="/keshmed-logo.png" width="100" height="45" alt="site-logo">
         </nuxt-link>
@@ -46,10 +54,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
-import { languages, navigation_links } from '~/constants'
+import { languages } from '~/constants'
 
+const route = useRoute()
 const { locale } = useI18n()
 
 const currentLang = computed(() => languages.find((l) => l.lang === locale.value))

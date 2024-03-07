@@ -1,34 +1,14 @@
 <template>
     <v-app>
         <ClientOnly>
-            <AppNavbar :drawer="drawer" @close-nav="drawer=false" />
-            <AppBar @open-nav="drawer=true" />
+            <AppBar />
         </ClientOnly>
         <v-main class="min-h-screen">
             <slot />
         </v-main>
+        <v-btn href="tel:+998908893700" target="_blank" size="60" rounded="circle" color="primary" style="border: 2px solid #fff; position: fixed; right: 50px; bottom: 50px; z-index: 444;">
+            <v-icon size="30">mdi-phone</v-icon>
+        </v-btn>
         <AppFooter />
     </v-app>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-// import { useStore } from 'vuex'
-// import { getTree } from '../../api/categories'
-// import { getAllBrands } from '../../api/brands'
-
-const drawer = ref(false)
-// const { commit } = useStore()
-
-const init = async () => {
-    // const [c, b] = await Promise.all([
-    //     getTree(),
-    //     getAllBrands('')
-    // ])
-    
-    // commit('SET_CATEGORIES', c.data)
-    // commit('SET_BRANDS', b.data.results)
-}
-
-init()
-</script>

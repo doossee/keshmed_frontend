@@ -11,9 +11,14 @@ export const useOrders = () => {
         body: JSON.stringify(data)
     })
 
+    const deleteOrder = (id: any) => $fetch(`/api/orders/${id}`, {
+        method: 'delete'
+    })
+
     return {
         getOrders,
         checkOrder,
+        deleteOrder,
         createOrder,
     }
 }

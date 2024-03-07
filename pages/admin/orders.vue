@@ -36,9 +36,14 @@
                               </template>
                               <template #item.status="{item, column, index}">
                                 <td :data-label="column.title">
-                                  <v-chip variant="flat" :disabled="item.checked" :color="item.checked?'green':'red'" @click="check(item.id!, index)">
-                                    <v-icon>mdi-check{{ item.checked?"-all":"" }}</v-icon>
-                                  </v-chip>
+                                  <div class="d-flex ga-1">
+                                    <v-chip variant="flat" :disabled="item.checked" :color="item.checked?'green':'red'" @click="check(item.id!, index)">
+                                      <v-icon>mdi-check{{ item.checked?"-all":"" }}</v-icon>
+                                    </v-chip>
+                                    <v-chip variant="flat" color="red" @click="handleDelete(item.id!, index)">
+                                      <v-icon>mdi-delete</v-icon>
+                                    </v-chip>
+                                  </div>
                                 </td>
                               </template>
                           </v-data-table-server>
@@ -66,7 +71,7 @@ definePageMeta({
   middleware: ['auth'],
 })
 
-const { checkOrder, getOrders } = useOrders()
+const { checkOrder, getOrders, deleteOrder } = useOrders()
 const { debounce } = lodash
 
 const { t } = useI18n()
@@ -125,6 +130,12 @@ const check = async (id: number, i: number) => {
   if(!data) return
   items.value[i].checked = true
   alert('Successfully checked order')
+}
+
+const handleDelete = async (id: any, index: number) => {
+  if(!confirm('')) return
+  items.value.splice(index, 1)
+  await deleteOrder(id)
 }
 
 const loadItems = async () => {

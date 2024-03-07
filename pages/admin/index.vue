@@ -541,6 +541,9 @@ const init = async () => {
 }
 
 init()
-
+// COMPLETED product/id/ ?.image
+// COMPLETED fix height of product:id of main big image
+// COMPLETED remove navigation bar and add products button in app bar
+// COMPLETED add phone circle button fixed
 watch(dialog, (v) => v || close())
 </script>
