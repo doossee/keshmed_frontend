@@ -1,4 +1,4 @@
-import { d as defineEventHandler, u as useRuntimeConfig } from './nitro/node-server.mjs';
+import { d as defineEventHandler } from './nitro/node-server.mjs';
 import 'node:http';
 import 'node:https';
 import 'fs';
@@ -17,8 +17,7 @@ function asSitemapUrl(url) {
 }
 
 const urls = defineSitemapEventHandler(async () => {
-  useRuntimeConfig();
-  const data = await fetch(`http://37.140.216.137.:8001/api/products?expand=images`);
+  const data = await fetch(`https://keshmed.uz:443/api/products?expand=images`);
   const products = await data.json();
   return products.results.map(
     (p) => asSitemapUrl({
