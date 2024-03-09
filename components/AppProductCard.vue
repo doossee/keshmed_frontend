@@ -2,12 +2,14 @@
     <v-card border flat theme="light" class="pt-2">
         <v-img width="100%" height="200" :alt="item.title_ru+' image'" :src="item?.images?.[0]?.image||'/images/nophoto.jpg'"></v-img>
         <v-divider class="mb-1"></v-divider>
-        <router-link :to="`/product/${item.slug}`" class="px-3 text-decoration-none font-weight-medium text-subtitle-1 py-1 text-primary">{{ item?.[`title_${$i18n.locale as 'uz'}`] }}</router-link>
-        <v-card-text class="py-1 px-3"><span class="font-weight-medium">{{ $t('products.price') }}:</span> {{ item?.price }} $</v-card-text>
-        <v-card-text class="py-1 px-3"><span class="font-weight-medium">{{ $t('products.brand') }}:</span> {{ item?.brand.name }}</v-card-text>
-        <v-card-text class="py-1 px-3"><span class="font-weight-medium">{{ $t('products.shipping') }}:</span> {{ countries[item.shipping_from]?.name }}</v-card-text>
-        <v-card-text class="py-1 px-3"><span class="font-weight-medium">{{ $t('products.model') }}:</span> {{ item.model }}</v-card-text>
-        <v-card-text class="py-1 px-3"><span class="font-weight-medium">{{ $t('products.warranty') }}:</span> {{ item.warranty }}</v-card-text>
+        <v-card-text class="py-0">
+            <nuxt-link :to="`/product/${item.slug}`" class="text-decoration-none font-weight-medium text-subtitle-1 py-1 text-primary">{{ item?.[`title_${$i18n.locale as 'uz'}`] }}</nuxt-link>
+        </v-card-text>
+        <v-card-text class="py-1 px-4"><span class="font-weight-medium">{{ $t('products.price') }}:</span> {{ item?.price }} $</v-card-text>
+        <v-card-text class="py-1 px-4"><span class="font-weight-medium">{{ $t('products.brand') }}:</span> {{ item?.brand.name }}</v-card-text>
+        <v-card-text class="py-1 px-4"><span class="font-weight-medium">{{ $t('products.shipping') }}:</span> {{ countries[item.shipping_from]?.name }}</v-card-text>
+        <v-card-text class="py-1 px-4"><span class="font-weight-medium">{{ $t('products.model') }}:</span> {{ item.model }}</v-card-text>
+        <v-card-text class="pt-1 pb-3 px-4"><span class="font-weight-medium">{{ $t('products.warranty') }}:</span> {{ item.warranty }}</v-card-text>
         <!-- <v-divider></v-divider>
         <v-card-actions class="pa-3 d-flex align-center justify-space-between">
             <div class="d-flex align-center">

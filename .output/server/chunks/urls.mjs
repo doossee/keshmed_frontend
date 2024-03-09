@@ -17,8 +17,7 @@ function asSitemapUrl(url) {
 }
 
 const urls = defineSitemapEventHandler(async () => {
-  const data = await fetch(`https://keshmed.uz:443/api/products?expand=images`);
-  const products = await data.json();
+  const products = await $fetch("https://keshmed.uz:443/api/products?expand=images");
   return products.results.map(
     (p) => asSitemapUrl({
       loc: `/product/${p.slug}`,

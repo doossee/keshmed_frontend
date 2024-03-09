@@ -61,7 +61,7 @@
                                     <td :data-label="column.title">
                                         <v-list-item nav density="compact">
                                             <template #prepend>
-                                                <v-avatar size="30">
+                                                <v-avatar size="30" class="border" rounded>
                                                     <v-img cover :src="countries[item.shipping_from]?.flag"></v-img>
                                                 </v-avatar>
                                             </template>
@@ -112,58 +112,58 @@
                             <v-col cols="12" class="pa-2">
                                 <v-label>Nomi (uz)</v-label>
                                 <v-text-field v-model="product.title_uz" :rules="nameRule" placeholder="Nomi (uz)"
-                                    hide-details density="compact" bg-color="surface" color="primary" variant="solo" flat
+                                    hide-details density="compact" bg-color="surface" color="primary" variant="outlined" flat
                                     class="border rounded"></v-text-field>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>Название (ru)</v-label>
                                 <v-text-field v-model="product.title_ru" :rules="nameRule" placeholder="Название (ru)"
-                                    hide-details density="compact" bg-color="surface" color="primary" variant="solo" flat
+                                    hide-details density="compact" bg-color="surface" color="primary" variant="outlined" flat
                                     class="border rounded"></v-text-field>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>Title (en)</v-label>
                                 <v-text-field v-model="product.title_en" :rules="nameRule" placeholder="Title (en)"
-                                    hide-details density="compact" bg-color="surface" color="primary" variant="solo" flat
+                                    hide-details density="compact" bg-color="surface" color="primary" variant="outlined" flat
                                     class="border rounded"></v-text-field>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>{{ $t('products.model') }}</v-label>
                                 <v-text-field v-model="product.model" :rules="nameRule" :placeholder="$t('products.model')"
-                                    hide-details density="compact" bg-color="surface" color="primary" variant="solo" flat
+                                    hide-details density="compact" bg-color="surface" color="primary" variant="outlined" flat
                                     class="border rounded"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" class="pa-2">
                                 <v-label>{{ $t('products.price') }}</v-label>
                                 <v-text-field density="compact" bg-color="surface" v-model="product.price" :rules="nameRule"
                                     flat class="border rounded" :placeholder="$t('products.price')" type="number"
-                                    hide-details variant="solo" color="primary"></v-text-field>
+                                    hide-details variant="outlined" color="primary"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" class="pa-2">
                                 <v-label>{{$t('products.condition')}}</v-label>
                                 <v-select :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface"
                                     v-model="product.condition" :items="conditions" :placeholder="$t('products.condition')"
-                                    :item-title="'title_' + $i18n.locale" hide-details item-value="value" variant="solo"
+                                    :item-title="'title_' + $i18n.locale" hide-details item-value="value" variant="outlined"
                                     color="primary"></v-select>
                             </v-col>
                             <v-col cols="12" sm="6" class="pa-2">
                                 <v-label>{{$t('products.warranty')}}</v-label>
                                 <v-text-field density="compact" bg-color="surface" v-model="product.warranty"
-                                    :rules="nameRule" min="0" flat class="border rounded"
-                                    :placeholder="$t('products.warranty')" type="number" hide-details variant="solo"
+                                    min="0" flat class="border rounded"
+                                    :placeholder="$t('products.warranty')" type="number" hide-details variant="outlined"
                                     color="primary"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" class="pa-2">
                                 <v-label>{{ $t('products.year') }}</v-label>
                                 <v-text-field density="compact" bg-color="surface" v-model="product.year" :rules="nameRule"
                                     min="1000" flat class="border rounded" :placeholder="$t('products.year')" type="number"
-                                    hide-details variant="solo" color="primary"></v-text-field>
+                                    hide-details variant="outlined" color="primary"></v-text-field>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>{{ $t('products.category') }}</v-label>
                                 <v-select flat class="border rounded" density="compact" bg-color="surface"
                                     v-model="product.category" :items="categories" :placeholder="$t('products.category')"
-                                    :item-title="`name_${$i18n.locale}`" hide-details item-value="id" variant="solo"
+                                    :item-title="`name_${$i18n.locale}`" hide-details item-value="id" variant="outlined"
                                     color="primary"></v-select>
                             </v-col>
 
@@ -171,7 +171,7 @@
                                 <v-label>{{ $t('products.brand') }}</v-label>
                                 <v-select :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface"
                                     v-model="product.brand" :items="brands" :placeholder="$t('products.brand')"
-                                    item-title="name" hide-details item-value="id" variant="solo"
+                                    item-title="name" hide-details item-value="id" variant="outlined"
                                     color="primary"></v-select>
                             </v-col>
                             <v-col cols="12" class="pa-2">
@@ -179,32 +179,32 @@
                                 <v-select :item-props="itemProps" flat class="border rounded" density="compact"
                                     bg-color="surface" v-model="product.shipping_from" :items="countries"
                                     :placeholder="$t('products.shipping')" item-title="name" hide-details item-value="id"
-                                    variant="solo" color="primary" />
+                                    variant="outlined" color="primary" />
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>{{ $t('products.sales_area') }}</v-label>
                                 <v-autocomplete :item-props="itemProps" flat class="border rounded" density="compact"
                                     bg-color="surface" multiple chips v-model="product.sales_areas" :items="countries"
                                     :placeholder="$t('products.sales_area')" item-title="name" hide-details item-value="id"
-                                    variant="solo" color="primary" />
+                                    variant="outlined" color="primary" />
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>Ma'lumot (uz)</v-label>
                                 <v-textarea :rules="nameRule" no-resize flat class="border rounded" density="compact"
                                     bg-color="surface" v-model="product.description_uz" placeholder="Ma'lumot (uz)"
-                                    hide-details color="primary" variant="solo"></v-textarea>
+                                    hide-details color="primary" variant="outlined"></v-textarea>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>Описание (ru)</v-label>
                                 <v-textarea :rules="nameRule" no-resize flat class="border rounded" density="compact"
                                     bg-color="surface" v-model="product.description_ru" placeholder="Описание (ru)"
-                                    hide-details color="primary" variant="solo"></v-textarea>
+                                    hide-details color="primary" variant="outlined"></v-textarea>
                             </v-col>
                             <v-col cols="12" class="pa-2">
                                 <v-label>Description (en)</v-label>
                                 <v-textarea :rules="nameRule" no-resize flat class="border rounded" density="compact"
                                     bg-color="surface" v-model="product.description_en" placeholder="Description (en)"
-                                    hide-details color="primary" variant="solo"></v-textarea>
+                                    hide-details color="primary" variant="outlined"></v-textarea>
                             </v-col>
                             <v-col cols="12" class="pa-2" v-for="c, i in product.characteristics" :key="i">
                                 <v-table density="compact" class="border rounded pb-2">
@@ -223,36 +223,36 @@
                                             <td class="px-2">
                                                 <v-text-field v-model="c.title.uz" :rules="nameRule" placeholder="uz"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                             <td class="px-2">
                                                 <v-text-field v-model="c.value.uz" :rules="nameRule" placeholder="uz"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="px-2">
                                                 <v-text-field v-model="c.title.ru" :rules="nameRule" placeholder="ru"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                             <td class="px-2">
                                                 <v-text-field v-model="c.value.ru" :rules="nameRule" placeholder="ru"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="px-2">
                                                 <v-text-field v-model="c.title.en" :rules="nameRule" placeholder="en"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                             <td class="px-2">
                                                 <v-text-field v-model="c.value.en" :rules="nameRule" placeholder="en"
                                                     hide-details density="compact" bg-color="surface" color="primary"
-                                                    variant="solo" flat class="border rounded"></v-text-field>
+                                                    variant="outlined" flat class="border rounded"></v-text-field>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -354,8 +354,8 @@ const save_loading = ref(false)
 const brands = ref<IBrand[]>([])
 const items = ref<IProduct[]>([])
 const dialog = ref<boolean>(false)
-const categories = ref<ICategory[]>([])
 const editedId = ref<any | null>(null)
+const categories = ref<ICategory[]>([])
 const editedIndex = ref<number | null>(null)
 const form = ref<HTMLFormElement | null>(null)
 
@@ -381,7 +381,7 @@ const product = ref<IProductForm | any>({
     characteristics: [],
     model: '',
     price: null,
-    sales_areas: [232,222,112,212,],
+    sales_areas: [],
     shipping_from: null,
     warranty: null,
     year: 2000,
@@ -452,8 +452,7 @@ const save = async () => {
             if (typeof product.value.category === "object") product.value.category = (product.value.category as any).id
             product.value.images?.map((im: any) => im.id)
             const data: any = await updateProduct(editedId.value, product.value)
-            // console.log(data);
-            
+        
             Object.assign(items.value[editedIndex.value!], {
                 ...data,
                 category: categories.value.find(c => c.id === data.category),
@@ -506,12 +505,12 @@ const deleteItem = async (i: number, id: number) => {
 const close = () => {
     dialog.value = false;
     nextTick(() => {
+        delete product.value.characteristics
         product.value = Object.assign({}, {
             brand: null,
             category: null,
             condition: 'new',
             for_sale: true,
-            characteristics: [],
             model: '',
             price: null,
             sales_areas: [],
@@ -536,14 +535,8 @@ const init = async () => {
     const [c,b]: [any, any] = await Promise.all([getAllCategories(''),getAllBrands('')])
     categories.value = c.results
     brands.value = b.results
-    // console.log(c, b);
-    
 }
 
 init()
-// COMPLETED product/id/ ?.image
-// COMPLETED fix height of product:id of main big image
-// COMPLETED remove navigation bar and add products button in app bar
-// COMPLETED add phone circle button fixed
 watch(dialog, (v) => v || close())
 </script>

@@ -14,7 +14,7 @@
                 <v-skeleton-loader height="100%" class="h-100" :loading="loading" type="image,image,button,button,button,button">
                     <v-card flat width="100%" height="100%" border>
                         <!-- <v-avatar rounded size="400"> -->
-                            <v-img :alt="product?.title_ru" cover height="500" width="100%" :src="product?.images?.[currentImage]?.image || '/images/nophoto.jpg'"></v-img>
+                            <v-img :alt="product?.title_ru" height="500" width="100%" :src="product?.images?.[currentImage]?.image || '/images/nophoto.jpg'"></v-img>
                         <!-- </v-avatar> -->
                         <v-divider></v-divider>
                         <v-card-actions class="pa-0 d-flex justify-center" v-if="product?.images.length!==0">
@@ -158,16 +158,10 @@
                     </v-card>
                 </v-skeleton-loader>
             </v-col>
-            <v-col cols="12" v-if="!loading">
+            <v-col cols="12" v-show="similarProduct.length>0">
                 <div class="w-100 d-flex pb-5 justify-space-between align-center">
                     <span class="text-primary">{{ $t('products.similar') }}</span>
                 </div>
-                
-                <!-- <Splide :options="slideOptions">
-                    <SplideSlide v-for="item,i in similarProduct" :key="i">
-                        <AppProductCard :item="item" />
-                    </SplideSlide>
-                </Splide> -->
                 <v-row>
                     <v-col cols="12" sm="6" md="4" lg="3" v-for="item,i in similarProduct" :key="i">
                         <AppProductCard :item="item" />
@@ -179,29 +173,29 @@
             <v-card>
                 <v-card-title class="text-primary">{{ $t('products.send_order') }}</v-card-title>
                 <v-card-text class="py-3 px-4">
-                    <v-form ref="form">
+                    <v-form ref="form" v-model="validd">
                         <v-row>
                             <v-col cols="12" class="py-2">
                                 <v-text-field v-model="review.first_name" class="border rounded" flat no-resize hide-details
-                                    :rules="nameRule" density="comfortable" variant="solo" :placeholder="$t('products.first_name')" />
+                                    required :rules="nameRule" density="comfortable" variant="outlined" :placeholder="$t('products.first_name')" />
                             </v-col>
                             <v-col cols="12" class="py-2">
                                 <v-text-field v-model="review.last_name" class="border rounded" flat no-resize hide-details
-                                    :rules="nameRule" density="comfortable" variant="solo" :placeholder="$t('products.last_name')" />
+                                    required :rules="nameRule" density="comfortable" variant="outlined" :placeholder="$t('products.last_name')" />
                             </v-col>
                             <v-col cols="12" class="py-2">
                                 <v-text-field v-model="review.phone" class="border rounded" flat no-resize hide-details
-                                    :rules="nameRule" density="comfortable" variant="solo" :placeholder="$t('products.phone')" />
+                                    required :rules="nameRule" density="comfortable" variant="outlined" :placeholder="$t('products.phone')" />
                             </v-col>
                             <v-col cols="12" class="py-2">
                                 <v-textarea v-model="review.message" class="border rounded" flat no-resize hide-details
-                                    :rules="nameRule" density="comfortable" variant="solo" :placeholder="$t('products.message')" />
+                                    required :rules="nameRule" density="comfortable" variant="outlined" :placeholder="$t('products.message')" />
                             </v-col>
                             <v-col cols="12" class="py-2">
-                                <v-select :item-props="itemProps" :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface" v-model="review.country" :items="countries" :placeholder="$t('products.country')" item-title="name" hide-details item-value="id" variant="solo" color="primary" />
+                                <v-select required :item-props="itemProps" :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface" v-model="review.country" :items="countries" :placeholder="$t('products.country')" item-title="name" hide-details item-value="id" variant="outlined" color="primary" />
                             </v-col>
                             <v-col cols="12" class="d-flex justify-end pt-1">
-                                <v-btn :loading="save_loading" flat @click="handleReview" color="primary">{{ $t('products.send') }}</v-btn>
+                                <v-btn :loading="save_loading" :disabled="!validd" flat @click="handleReview" color="primary">{{ $t('products.send') }}</v-btn>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -224,6 +218,7 @@ const { getProductById, getAllProducts } = useProducts()
 const save_loading = ref(false)
 
 const route = useRoute()
+const validd = ref(false)
 const dialog = ref(false)
 const loading = ref(false)
 const currentImage = ref(0)
@@ -256,7 +251,6 @@ const init = async () => {
         getSimilar(data.category.id, data.brand.id)
     } catch (error) {
         alert({'uz':"Bunday Qurilma topilmadi!", 'ru': "Данное оборудование не найдено!", en: "This Equipment not found!"}[lang.value])
-        // navigateTo('/products', { external: true })
         console.log(error);
         
     } finally {
@@ -266,8 +260,7 @@ const init = async () => {
 
 const getSimilar = async (c: number, b: number) => {
     const data: any = await getAllProducts(`?category=${c}&brand=${b}&page=1&limit=10&expand=images,brand`)
-    similarProduct.value = data.results
-    // console.log(data.results);
+    similarProduct.value = data.results?.filter((p: any) => p.slug !== route.params?.id)
 }
 
 const itemProps = (item: any) => {
@@ -277,11 +270,11 @@ const itemProps = (item: any) => {
     }
 }
 const handleReview = async () => {
-    save_loading.value = true
     const { valid } = await form.value?.validate()
     if (!valid) return
     
     try {
+        save_loading.value = true
         await createOrder({...review, product: product.value?.id})
         dialog.value = false
         alert({'uz':"Muvaffaqiyatli yuborildi!", 'ru': "Успешно отправлено!", en: 'Succesfully sended!'}[lang.value])

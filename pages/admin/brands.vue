@@ -84,12 +84,9 @@
                         <v-label>{{ $t('products.title') }}</v-label>
                         <v-text-field v-model="editedItem.name" :rules="nameRule"
                             :placeholder="$t('products.title')" hide-details density="compact" bg-color="surface"
-                            color="primary" variant="solo" flat class="border rounded"
+                            color="primary" variant="outlined" required flat class="border rounded"
                         ></v-text-field>
                     </v-col>
-                    <!-- <v-col cols="12" class="pa-2">
-                        <v-select :item-props="itemProps" :rules="nameRule" flat class="border rounded" density="compact" bg-color="surface" v-model="editedItem.country" :items="countries" :placeholder="$t('products.country')" item-title="name" hide-details item-value="id" variant="solo" color="primary" />
-                    </v-col> -->
                     <v-col cols="12" class="pa-2">
                         <v-row>
                             <v-col cols="4" sm="2" class="pr-0">
@@ -126,7 +123,7 @@ definePageMeta({
   middleware: ['auth'],
 })
 
-const itemProps = (item: any) => ({ title: item.name, 'append-avatar': item?.flag })
+// const itemProps = (item: any) => ({ title: item.name, 'append-avatar': item?.flag })
 const { createBrand, deleteBrand, getAllBrands, updateBrand } = useBrands()
 const { debounce } = lodash
 
@@ -200,24 +197,24 @@ const close = () => {
     })
 }
 const save = async () => {
-  save_loading.value = true
-  const { valid } = await form.value?.validate();
-  if (!valid) return
+    const { valid } = await form.value?.validate();
+    if (!valid) return
 
-  var form_data = new FormData()
-
-  Object.keys(editedItem.value).map((key: any) => {
-    form_data.append(key, editedItem.value[key])
-  })
-  if(image.value) form_data.append('image', image.value[0])
-
-  try {
-    if (editedIndex.value > -1) {
-    const data: any = await updateBrand(editedId.value as any, form_data)
-    Object.assign(items.value[editedIndex.value], data)
-    } else {
-    const data: any = await createBrand(form_data)
-    items.value.push(data)
+    var form_data = new FormData()
+    
+    Object.keys(editedItem.value).map((key: any) => {
+        form_data.append(key, editedItem.value[key])
+    })
+    if(image.value) form_data.append('image', image.value[0])
+    
+    try {
+      save_loading.value = true
+        if (editedIndex.value > -1) {
+        const data: any = await updateBrand(editedId.value as any, form_data)
+        Object.assign(items.value[editedIndex.value], data)
+        } else {
+        const data: any = await createBrand(form_data)
+        items.value.push(data)
     }
     close()
   } catch (error) {

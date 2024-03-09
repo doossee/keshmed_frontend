@@ -1,0 +1,2 @@
+import{d as f,r as u,aI as d,aV as i,J as b}from"./entry.z2TJ7FsL.js";const m=Symbol.for("nuxt:client-only"),h=f({name:"ClientOnly",inheritAttrs:!1,props:["fallback","placeholder","placeholderTag","fallbackTag"],setup(k,{slots:a,attrs:r}){const l=u(!1);return d(()=>{l.value=!0}),i(m,!0),e=>{var t;if(l.value)return(t=a.default)==null?void 0:t.call(a);const n=a.fallback||a.placeholder;if(n)return n();const c=e.fallback||e.placeholder||"",o=e.fallbackTag||e.placeholderTag||"span";return b(o,r,c)}}});export{h as _};
+//# sourceMappingURL=client-only.DuEgPIHb.js.map

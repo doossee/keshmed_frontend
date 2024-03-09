@@ -28,44 +28,46 @@
           </v-card-title>
   
           <v-card-text class="px-4 pt-2 pb-3">
-            <v-row class="pa-2">
-              <v-col cols="12" class="pa-2">
-                  <v-label>Nomi (uz)</v-label>
-                  <v-text-field v-model="editedItem.name_uz" :rules="nameRule"
-                      placeholder="Nomi (uz)" hide-details density="compact" bg-color="surface"
-                      color="primary" variant="solo" flat class="border rounded"
-                  ></v-text-field>
-              </v-col>
-              <v-col cols="12" class="pa-2">
-                  <v-label>Название (ru)</v-label>
-                  <v-text-field v-model="editedItem.name_ru" :rules="nameRule"
-                      placeholder="Название (ru)" hide-details density="compact" bg-color="surface"
-                      color="primary" variant="solo" flat class="border rounded"
-                  ></v-text-field>
-              </v-col>
-              <v-col cols="12" class="pa-2">
-                  <v-label>Title (en)</v-label>
-                  <v-text-field v-model="editedItem.name_en" :rules="nameRule"
-                      placeholder="Title (en)" hide-details density="compact" bg-color="surface"
-                      color="primary" variant="solo" flat class="border rounded"
-                  ></v-text-field>
-              </v-col>
-              <v-col cols="12" class="pa-2">
-                  <v-label>{{ $t('admin.parent_category') }}</v-label>
-                  <v-select v-model="editedItem.parent"
-                    :items="all" :item-title="`name_${$i18n.locale}`" item-value="id"
-                    :placeholder="$t('admin.parent_category')" hide-details density="compact" bg-color="surface"
-                    color="primary" variant="solo" flat class="border rounded"
-                  />
-              </v-col>
-              <v-col cols="12" class="pa-2">
-                <v-btn color="primary" :disabled="save_loading"
-                  :loading="save_loading"
-                  block @click="save" height="45">
-                  {{ $t('admin.save') }}
-                </v-btn>
-              </v-col>
-            </v-row>
+            <v-form ref="form">
+              <v-row class="pa-2">
+                <v-col cols="12" class="pa-2">
+                    <v-label>Nomi (uz)</v-label>
+                    <v-text-field v-model="editedItem.name_uz" :rules="nameRule"
+                        placeholder="Nomi (uz)" hide-details density="compact" bg-color="surface"
+                        color="primary" variant="outlined" required flat class="border rounded"
+                    ></v-text-field>
+                </v-col>
+                <v-col cols="12" class="pa-2">
+                    <v-label>Название (ru)</v-label>
+                    <v-text-field v-model="editedItem.name_ru" :rules="nameRule"
+                        placeholder="Название (ru)" hide-details density="compact" bg-color="surface"
+                        color="primary" variant="outlined" required flat class="border rounded"
+                    ></v-text-field>
+                </v-col>
+                <v-col cols="12" class="pa-2">
+                    <v-label>Title (en)</v-label>
+                    <v-text-field v-model="editedItem.name_en" :rules="nameRule"
+                        placeholder="Title (en)" hide-details density="compact" bg-color="surface"
+                        color="primary" variant="outlined" required flat class="border rounded"
+                    ></v-text-field>
+                </v-col>
+                <v-col cols="12" class="pa-2">
+                    <v-label>{{ $t('admin.parent_category') }}</v-label>
+                    <v-select v-model="editedItem.parent"
+                      :items="all" :item-title="`name_${$i18n.locale}`" item-value="id"
+                      :placeholder="$t('admin.parent_category')" hide-details density="compact" bg-color="surface"
+                      color="primary" variant="outlined" required flat class="border rounded"
+                    />
+                </v-col>
+                <v-col cols="12" class="pa-2">
+                  <v-btn color="primary" :disabled="save_loading"
+                    :loading="save_loading"
+                    block @click="save" height="45">
+                    {{ $t('admin.save') }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
           </v-card-text>
         </v-card>
       </v-dialog>
@@ -85,10 +87,10 @@ const { getAllCategories, getTree, createCategory, deleteCategory, updateCategor
 const loading = ref(false)
 const save_loading = ref(false)
 const editedId: Ref<any> = ref(null)
-// const search: Ref<string> = ref("")
 const dialog: Ref<boolean> = ref(false)
 const items: Ref<ICategory[]> = ref([])
 const all: Ref<ICategory[]> = ref([])
+const form = ref<HTMLFormElement|null>(null)
 const indexes: Ref<number[]> = ref([])
 const nameRule = [(v: any) => !!v || 'asdf']
 const editedItem = ref<ICategory>({
@@ -144,6 +146,9 @@ const close = () => {
 }
 
 const save = async () => {
+  const { valid } = await form.value?.validate();
+    if (!valid) return
+
   try {
     
     save_loading.value = true
