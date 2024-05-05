@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        config.plugins.push(vuetify({ autoImport: true }))
+        config.plugins?.push(vuetify({ autoImport: true }))
       })
     },
     '@nuxt/image', '@nuxtjs/i18n', 'nuxt-delay-hydration', '@nuxtjs/robots', '@nuxtjs/sitemap',
@@ -41,8 +41,8 @@ export default defineNuxtConfig({
     },
   },
   sitemap: {
-    i18n: true,
-    url: 'https://keshmed.uz',
+    // i18n: true,
+    // url: 'https://keshmed.uz',
     exclude: ['/admin', '/admin/*', '/login'],
     sources: [
       '/api/__sitemap__/urls',
