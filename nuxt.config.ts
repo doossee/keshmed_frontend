@@ -3,12 +3,13 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   ssr: true,
-  
   devtools: { enabled: false },
+  experimental: {
+    asyncContext: true,
+  },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
@@ -40,7 +41,7 @@ export default defineNuxtConfig({
     },
   },
   sitemap: {
-    i18n: false,
+    i18n: true,
     url: 'https://keshmed.uz',
     exclude: ['/admin', '/admin/*', '/login'],
     sources: [

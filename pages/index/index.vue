@@ -6,10 +6,8 @@
                 <div class="w-100 h-100 px-2" style="position: absolute;">
                     <v-carousel cycle height="100%" hide-delimiter-background :show-arrows="false">
                         <v-carousel-item v-for="i in 4" :key="i">
-                            <v-avatar class="w-100 h-100" rounded>
-                                <v-img alt="medical" gradient="to top left, rgba(104, 59, 181, 1), rgba(104, 59, 181, .4)"
-                                    cover :src="`/carousel/image-${i}.jpg`"></v-img>
-                            </v-avatar>
+                            <v-img alt="medical" gradient="to top left, rgba(104, 59, 181, 1), rgba(104, 59, 181, .4)"
+                                cover :src="`/carousel/image-${i}.jpg`"></v-img>
                         </v-carousel-item>
                     </v-carousel>
                 </div>
@@ -77,9 +75,9 @@
                     <span class="text-primary">{{ $t('home.all_categories') }}</span>
                 </div>
                 <v-row>
-                    <!-- <v-col class="pa-2" cols="12" sm="6" md="4" v-for="c, i in getters.categories" :key="i">
+                    <v-col class="pa-2" cols="12" sm="6" md="4" v-for="c, i in categories" :key="i">
                         <AppHomeCategory :category="c" />
-                    </v-col> -->
+                    </v-col>
                 </v-row>
             </v-col>
 
@@ -122,7 +120,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import lodash from 'lodash'
-import type { IProduct } from '~/types'
+import type { IProduct, ICategory } from '~/types'
 import { index_card_items, faqs, countries } from '~/constants'
 
 useHead({
@@ -136,15 +134,21 @@ definePageMeta({
     layout: 'index-layout',
 })
 const { debounce } = lodash
+const { getTree } = useCategories()
 const { getAllProducts } = useProducts()
-const products = ref([])
+const products = ref<ICategory[]>([])
 // const { getters } = useStore()
 // const { locale, t } = useI18n()
+const categories = ref([])
 const searchedProducts = ref<IProduct[]>([])
 
 const init = async () => {
-    const data: any = await getAllProducts('?expand=images,brand&limit=12')
+    const [data, cdata]: [any,any] = await Promise.all([
+        getAllProducts('?expand=images,brand&limit=12'),
+        getTree()
+    ])
     products.value = data.results
+    categories.value = cdata
 }
 
 const searchProducts = debounce(async (e: string | null) => {
