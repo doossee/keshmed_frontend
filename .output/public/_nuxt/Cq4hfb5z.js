@@ -1,0 +1,2 @@
+import{an as f,r as u,ao as i,w as d,ap as p,aq as v,ar as h,as as l,at as c,au as x}from"./DbgwfQhJ.js";function A(a,t={}){const e=t.head||f();if(e)return e.ssr?e.push(a,t):w(e,a,t)}function w(a,t,e={}){const n=u(!1),s=u({});i(()=>{s.value=n.value?{}:l(t)});const r=a.push(s.value,e);return d(s,o=>{r.patch(o)}),c()&&(p(()=>{r.dispose()}),v(()=>{n.value=!0}),h(()=>{n.value=!1})),r}function H(a){return x(()=>{var e;const t=(e=c())==null?void 0:e.appContext.app.$nuxt;return t?t.runWithContext(a):a()})}export{A as u,H as w};
+//# sourceMappingURL=Cq4hfb5z.js.map

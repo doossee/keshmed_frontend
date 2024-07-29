@@ -152,7 +152,7 @@ const editedItem = ref<any>({
 //   country: null,
 })
 const imageSrc = computed(() => {
-  if(image.value?.length > 0) return URL.createObjectURL(image.value[0])
+  if(image.value) return URL.createObjectURL(image.value)
   return '/images/nophoto.jpg'
 })
 
@@ -160,7 +160,7 @@ const perpagetext = computed(() => {
   const page_1 = (page.value - 1) * perpage.value;
   return `${page_1 + 1}-${page_1 + items.value.length} / ${totalCount.value}`
 })
-const localizedHeaders = computed(() => {
+const localizedHeaders: any = computed(() => {
   return headers.map(h => ({...h, title: t(h.title)}))
 })
 const debounceSearch = debounce((e: string) => {
@@ -205,7 +205,7 @@ const save = async () => {
     Object.keys(editedItem.value).map((key: any) => {
         form_data.append(key, editedItem.value[key])
     })
-    if(image.value) form_data.append('image', image.value[0])
+    if(image.value) form_data.append('image', image.value)
     
     try {
       save_loading.value = true

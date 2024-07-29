@@ -26,7 +26,7 @@
                                         <div class="d-flex w-100 justify-space-end align-center">
                                             <v-btn @click="editItem(index, item)" color="light-blue-accent-4" size="30" flat
                                                 class="mr-1"><v-icon icon="mdi-pencil" /></v-btn>
-                                            <v-btn @click="deleteItem(index, item.id!)" color="red" size="30"
+                                            <v-btn @click="deleteItem(index, item.slug as any)" color="red" size="30"
                                                 flat><v-icon icon="mdi-delete" /></v-btn>
                                         </div>
                                     </td>
@@ -417,7 +417,7 @@ const perpagetext = computed(() => {
     const page_1 = (page.value - 1) * perpage.value;
     return `${page_1 + 1}-${page_1 + items.value.length} / ${totalCount.value}`
 })
-const localizedHeaders = computed(() => {
+const localizedHeaders: any = computed(() => {
   return headers.map(h => ({...h, title: t(h.title)}))
 })
 const debounceSearch = debounce((e: string) => {
@@ -505,7 +505,6 @@ const deleteItem = async (i: number, id: number) => {
 const close = () => {
     dialog.value = false;
     nextTick(() => {
-        delete product.value.characteristics
         product.value = Object.assign({}, {
             brand: null,
             category: null,
@@ -514,6 +513,7 @@ const close = () => {
             model: '',
             price: null,
             sales_areas: [],
+            characteristics: [],
             shipping_from: null,
             warranty: null,
             year: 2000,
